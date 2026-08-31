@@ -116,9 +116,14 @@ Possible future improvements include:
 
 ## 📌 Project Status
 
-**Current Phase:** Phase -1 — Repository Initialization
+## 📌 Project Status
 
-The project is currently being set up with Git/GitHub, documentation, environment configuration, and project structure before model development begins.
+**Current Phase:** Phase 0 — Environment & Project Setup
+
+The repository and development environment have been configured successfully. EmoLens currently uses Python 3.11.16 with TensorFlow 2.15.1 and the required core libraries. Initial configuration tests are passing successfully.
+
+**Next:** Phase 1 — Dataset verification and preparation.
+
 
 ## 👩‍💻 Author
 

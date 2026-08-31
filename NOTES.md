@@ -151,3 +151,17 @@ Git commits will be made at meaningful milestones.
 * Created `NOTES.md`.
 * Dataset has not yet been downloaded.
 * Model development has not yet started.
+
+### Phase 0 Completion — 2026-08-31
+
+* Created the dedicated `emo_lens` Conda environment.
+* Configured Python 3.11.16.
+* Installed and verified TensorFlow 2.15.1 and core dependencies.
+* Added pinned dependencies to `requirements.txt`.
+* Added `src/config.py` for centralized project configuration.
+* Added `src/__init__.py` to make `src` a Python package.
+* Added the initial `tests/test_config.py` test suite.
+* Verified the configuration using pytest.
+* All 4 configuration tests pass.
+* Phase 0 environment setup is complete.
+* Next phase: Phase 1 — Dataset verification and preparation.
