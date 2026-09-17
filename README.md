@@ -85,15 +85,36 @@ Web Interface
 
 ## 📊 Dataset
 
-The preferred dataset is **FERPlus**, subject to verification of availability, labels, licensing, and distribution.
+EmoLens uses the original FER2013 image data together with the official
+Microsoft FERPlus annotations.
 
-If FERPlus cannot be used, **FER2013** will be considered as a fallback.
+The FER2013 and FERPlus files contain 35,887 aligned samples. FERPlus
+annotator votes are used to assign labels rather than relying directly
+on the original FER2013 emotion labels.
 
-Only the five selected emotion classes will be used for the final classifier.
+Only five emotion classes are used:
 
-Dataset files will **not** be committed to this repository.
+- Angry
+- Happy
+- Sad
+- Surprise
+- Neutral
 
-More information will be maintained in [`data/README.md`](data/README.md).
+A sample is retained only when one of these five emotions has a unique
+highest vote count greater than zero. Samples with tied highest votes
+are discarded to reduce label ambiguity.
+
+After filtering:
+
+- Original samples: 35,887
+- Retained samples: 34,039
+- Discarded ambiguous samples: 1,848
+
+The processed dataset is divided into training, validation, and test
+sets.
+
+Dataset files are excluded from GitHub through `.gitignore`.
+See `data/README.md` for dataset preparation and source details.
 
 ## ⚠️ Limitations
 
@@ -118,11 +139,9 @@ Possible future improvements include:
 
 ## 📌 Project Status
 
-**Current Phase:** Phase 0 — Environment & Project Setup
+**Current Phase:** Phase 1- dataset pipeline
 
-The repository and development environment have been configured successfully. EmoLens currently uses Python 3.11.16 with TensorFlow 2.15.1 and the required core libraries. Initial configuration tests are passing successfully.
-
-**Next:** Phase 1 — Dataset verification and preparation.
+Next: Phase 2 — Baseline CNN development
 
 
 ## 👩‍💻 Author

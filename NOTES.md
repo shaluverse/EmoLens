@@ -4,9 +4,23 @@ This file records important project decisions, development notes, and changes ma
 
 ## 📌 Current Status
 
-**Phase:** Phase -1 — Repository Initialization
+**Phase:** Phase 1 — Dataset Pipeline
 
-**Status:** In progress
+**Status:** Complete
+
+### Completed in Phase 1
+
+- FER2013 image data and official Microsoft FERPlus annotations verified and aligned.
+- 35,887 aligned samples confirmed.
+- Five target emotions selected: Angry, Happy, Sad, Surprise, and Neutral.
+- Unique-highest-vote labeling rule implemented.
+- Samples with tied highest votes discarded.
+- 34,039 images retained.
+- 1,848 ambiguous samples discarded.
+- Processed images organized into training, validation, and test splits.
+- Dataset integrity check passed with 0 corrupted images.
+
+**Next:** Phase 2 — Baseline CNN Development
 
 ## ✅ Decisions Made
 
@@ -36,9 +50,9 @@ The first version will use uploaded images rather than a live webcam.
 
 ### Dataset
 
-**FERPlus** is the preferred dataset.
+FER2013 images and official Microsoft FERPlus annotations are being used together.
 
-**FER2013** will be considered as a fallback after verifying dataset availability, labels, licensing, and distribution requirements.
+FERPlus annotator votes are used for the final five-class labeling process.
 
 ### Model
 
@@ -68,9 +82,11 @@ Each phase should be completed and tested before moving to the next phase.
 
 Git commits will be made at meaningful milestones.
 
-## 🗺️ Planned Phases
+## 🗺 Planned Phases
 
 ### Phase -1 — Repository Initialization
+
+**Status:** Complete
 
 * Create GitHub repository
 * Connect local repository
@@ -81,19 +97,27 @@ Git commits will be made at meaningful milestones.
 
 ### Phase 0 — Environment & Project Setup
 
+**Status:** Complete
+
 * Create Python environment
 * Install and verify dependencies
 * Add configuration
 * Finalize project structure
 * Create initial tests
 
-### Phase 1 — Dataset
+### Phase 1 — Dataset Pipeline
 
-* Verify FERPlus availability and terms
-* Download and inspect dataset
+**Status:** Complete
+
+* Verify FER2013 and FERPlus availability and source information
+* Download and inspect dataset files
+* Verify FER2013 and FERPlus row alignment
 * Analyze class distribution
 * Select the five required classes
+* Apply the unique-highest-vote labeling rule
+* Discard tied/ambiguous labels
 * Prepare training, validation, and test data
+* Run dataset integrity validation
 
 ### Phase 2 — Baseline CNN
 
@@ -137,31 +161,3 @@ Git commits will be made at meaningful milestones.
 * Prepare GitHub repository
 * Add final project screenshots
 * Prepare the project for portfolio/resume use
-
-## 📝 Development Log
-
-### 2026-08-31
-
-* Created public GitHub repository.
-* Connected local repository to GitHub.
-* Added `.gitignore`.
-* Created initial project folder structure.
-* Created `README.md`.
-* Created `data/README.md`.
-* Created `NOTES.md`.
-* Dataset has not yet been downloaded.
-* Model development has not yet started.
-
-### Phase 0 Completion — 2026-08-31
-
-* Created the dedicated `emo_lens` Conda environment.
-* Configured Python 3.11.16.
-* Installed and verified TensorFlow 2.15.1 and core dependencies.
-* Added pinned dependencies to `requirements.txt`.
-* Added `src/config.py` for centralized project configuration.
-* Added `src/__init__.py` to make `src` a Python package.
-* Added the initial `tests/test_config.py` test suite.
-* Verified the configuration using pytest.
-* All 4 configuration tests pass.
-* Phase 0 environment setup is complete.
-* Next phase: Phase 1 — Dataset verification and preparation.
