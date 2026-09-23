@@ -1,163 +1,139 @@
 # EmoLens — Project Notes
 
-This file records important project decisions, development notes, and changes made during the development of EmoLens.
+A short record of important decisions, progress, and results.
+
+---
 
 ## 📌 Current Status
 
-**Phase:** Phase 1 — Dataset Pipeline
+**Current Phase:** Phase 3 — Face Detection & Prediction
+**Completed:** Phase -1, Phase 0, Phase 1, Phase 2
+
+---
+
+## ✅ Project Decisions
+
+* **Project:** EmoLens
+* **Input:** JPG, JPEG, PNG images
+* **Classes:** Angry, Happy, Neutral, Sad, Surprise
+* **Model:** CNN
+* **Dataset:** FER2013 + official FERPlus annotations
+* **Webcam:** Not included
+* **GitHub:** Datasets, secrets, virtual environments, and `.keras` model files are not committed
+
+---
+
+## ✅ Phase -1 — Repository Setup
 
 **Status:** Complete
 
-### Completed in Phase 1
+* GitHub repository created
+* Project structure created
+* `.gitignore` added
+* Initial commit and push completed
 
-- FER2013 image data and official Microsoft FERPlus annotations verified and aligned.
-- 35,887 aligned samples confirmed.
-- Five target emotions selected: Angry, Happy, Sad, Surprise, and Neutral.
-- Unique-highest-vote labeling rule implemented.
-- Samples with tied highest votes discarded.
-- 34,039 images retained.
-- 1,848 ambiguous samples discarded.
-- Processed images organized into training, validation, and test splits.
-- Dataset integrity check passed with 0 corrupted images.
+---
 
-**Next:** Phase 2 — Baseline CNN Development
-
-## ✅ Decisions Made
-
-### Project Name
-
-The official project name is **EmoLens**.
-
-### Emotion Classes
-
-The final classifier will recognize exactly five emotions:
-
-1. Angry
-2. Happy
-3. Neutral
-4. Sad
-5. Surprise
-
-### Input
-
-The initial version will accept:
-
-* JPG
-* JPEG
-* PNG
-
-The first version will use uploaded images rather than a live webcam.
-
-### Dataset
-
-FER2013 images and official Microsoft FERPlus annotations are being used together.
-
-FERPlus annotator votes are used for the final five-class labeling process.
-
-### Model
-
-The initial model will be a **Convolutional Neural Network (CNN)**.
-
-The baseline model will be kept relatively small so that development and experimentation remain manageable.
-
-### GitHub
-
-GitHub will be used from the beginning of the project.
-
-The repository will be public.
-
-The following will not be committed:
-
-* Raw datasets
-* Processed datasets
-* API keys or secrets
-* Virtual environments
-* Trained `.keras` model files
-
-### Development Approach
-
-The project will be developed in phases.
-
-Each phase should be completed and tested before moving to the next phase.
-
-Git commits will be made at meaningful milestones.
-
-## 🗺 Planned Phases
-
-### Phase -1 — Repository Initialization
+## ✅ Phase 0 — Environment Setup
 
 **Status:** Complete
 
-* Create GitHub repository
-* Connect local repository
-* Add `.gitignore`
-* Create project structure
-* Create initial documentation
-* Make first commit and push
+* Python environment created
+* Dependencies installed
+* Environment tested
+* Project structure finalized
 
-### Phase 0 — Environment & Project Setup
+---
 
-**Status:** Complete
+## ✅ Phase 1 — Dataset Pipeline
 
-* Create Python environment
-* Install and verify dependencies
-* Add configuration
-* Finalize project structure
-* Create initial tests
+**Status:** Complete | **Date:** 2026-09-17
 
-### Phase 1 — Dataset Pipeline
+* FER2013 + FERPlus data aligned
+* 35,887 samples checked
+* 34,039 images retained
+* 1,848 ambiguous samples removed
+* Five classes prepared
+* Train/validation/test sets created
+* Dataset check passed with 0 corrupted images
 
-**Status:** Complete
+---
 
-* Verify FER2013 and FERPlus availability and source information
-* Download and inspect dataset files
-* Verify FER2013 and FERPlus row alignment
-* Analyze class distribution
-* Select the five required classes
-* Apply the unique-highest-vote labeling rule
-* Discard tied/ambiguous labels
-* Prepare training, validation, and test data
-* Run dataset integrity validation
+## ✅ Phase 2 — CNN Training & Evaluation
 
-### Phase 2 — Baseline CNN
+**Status:** Complete | **Date:** 2026-09-23
 
-* Build the initial CNN
-* Train the model
-* Evaluate performance
-* Save the trained model locally
-* Analyze errors and class performance
+### Training
 
-### Phase 3 — Face Detection & Prediction Pipeline
+* 30 epochs completed
+* Best validation accuracy: **82.00%**
+* Final training accuracy: **81.31%**
+* Final validation accuracy: **81.82%**
+* Best model saved as `models/emolens_cnn.keras`
 
-* Detect faces in uploaded images
-* Preprocess detected faces
-* Load the trained model
-* Generate emotion predictions
-* Handle invalid or unsupported images
+### Test Results
 
-### Phase 4 — Frontend
+* Test samples: **3,414**
+* Test accuracy: **81.17%**
+* Test loss: **0.5121**
+* Weighted F1-score: **81.21%**
 
-* Build the user interface
-* Add image upload
-* Display the uploaded image
-* Display detected face
-* Show predicted emotion
-* Add confidence information where appropriate
+### F1-score by Class
 
-### Phase 5 — Integration & Testing
+* Angry: **71.99%**
+* Happy: **90.18%**
+* Neutral: **82.25%**
+* Sad: **62.19%**
+* Surprise: **86.14%**
 
-* Connect frontend and backend
-* Test the complete workflow
-* Add edge-case handling
-* Improve error messages
-* Add automated tests
+**Result:** CNN training and evaluation completed successfully.
 
-### Phase 6 — Finalization
+---
 
-* Improve UI/UX
-* Clean project code
-* Update documentation
-* Verify `.gitignore`
-* Prepare GitHub repository
-* Add final project screenshots
-* Prepare the project for portfolio/resume use
+## 🔄 Phase 3 — Face Detection & Prediction
+
+**Next tasks:**
+
+* Detect face using OpenCV
+* Crop and preprocess face
+* Load trained CNN
+* Predict one of five classes
+* Show prediction + probability + emoji
+* Handle images with no detectable face
+
+---
+
+## ⏳ Phase 4 — Frontend
+
+* Image upload
+* Image preview
+* Detected-face preview
+* Prediction result
+* Professional UI
+
+---
+
+## ⏳ Phase 5 — Integration & Testing
+
+* Connect all components
+* Test different images
+* Handle errors and edge cases
+* Final testing
+
+---
+
+## ⏳ Phase 6 — Finalization
+
+* Clean code
+* Update README
+* Check GitHub
+* Add screenshots
+* Prepare presentation
+
+---
+
+## 📝 Important Note
+
+EmoLens predicts **facial-expression categories from images**. It does not determine a person's actual internal emotional state.
+
+**Rule:** Keep the project focused and prioritize working functionality over unnecessary features.
