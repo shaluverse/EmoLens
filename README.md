@@ -1,152 +1,124 @@
-# EmoLens 🎭
+# EmoLens — Project Notes
 
-AI-powered facial emotion recognition system using deep learning.
+Short record of important decisions, progress, and final results.
 
-## 📌 Project Overview
+---
 
-EmoLens is a computer vision application that detects facial expressions from an uploaded image and classifies the detected emotion into one of five categories:
+## Project Status
 
-* Happy
-* Sad
-* Angry
-* Surprise
-* Neutral
+**Status:** Completed
 
-The project uses a Convolutional Neural Network (CNN) trained on a facial emotion dataset and provides the prediction through a simple web interface.
+**Project:** EmoLens
+**Input:** JPG, JPEG, PNG images
+**Classes:** Angry, Happy, Neutral, Sad, Surprise
+**Model:** Custom CNN
+**Dataset:** FER2013 + official FERPlus annotations
+**Webcam:** Not included
 
-## 🎯 Problem Statement
+---
 
-Human emotions are often expressed through facial expressions. Automatically recognizing these expressions from images is a computer vision problem with applications in human-computer interaction, education, entertainment, accessibility, and other AI systems.
+## Phase 1 — Dataset Pipeline
 
-EmoLens aims to build a simple end-to-end emotion recognition system that can detect and classify facial emotions from an image.
+**Status:** Complete
 
-## ✨ Objectives
+* FER2013 and FERPlus data aligned.
+* 35,887 samples checked.
+* 34,039 samples retained.
+* 1,848 ambiguous samples discarded.
+* Five emotion classes prepared.
+* Train, validation, and test sets created.
+* Dataset integrity check passed with 0 corrupted images.
+* Images converted to 48 × 48 grayscale.
 
-* Detect faces from uploaded images.
-* Classify facial expressions into five emotion categories.
-* Build and evaluate a CNN-based deep learning model.
-* Provide an easy-to-use web interface.
-* Create a clean, reproducible, and well-documented AI project.
+---
 
-## 🧠 Emotion Classes
+## Phase 2 — CNN Training & Evaluation
 
-| Class | Emotion  |
-| ----- | -------- |
-| 0     | Angry    |
-| 1     | Happy    |
-| 2     | Neutral  |
-| 3     | Sad      |
-| 4     | Surprise |
+**Status:** Complete
 
-## 🏗️ Project Structure
+* 30 epochs completed.
+* Best validation accuracy: **82.00%**
+* Final validation accuracy: **81.82%**
+* Test samples: **3,414**
+* Test accuracy: **81.17%**
+* Macro F1: **0.7855**
+* Weighted F1: **0.8121**
 
-```text
-EmoLens/
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── README.md
-├── models/
-├── src/
-├── tests/
-├── frontend/
-├── .gitignore
-├── README.md
-├── NOTES.md
-└── requirements.txt
+### Class F1 Scores
+
+| Emotion  | F1 Score |
+| -------- | -------: |
+| Angry    |   71.99% |
+| Happy    |   90.18% |
+| Neutral  |   82.25% |
+| Sad      |   62.19% |
+| Surprise |   86.14% |
+
+The trained model is stored locally as:
+
+`models/emolens_cnn.keras`
+
+The model file is excluded from GitHub.
+
+---
+
+## Phase 3 — Prediction & Application
+
+**Status:** Complete
+
+Implemented:
+
+* OpenCV face detection.
+* Single-face validation.
+* Face cropping and preprocessing.
+* CNN inference.
+* Emotion and confidence prediction.
+* Emotion probability display.
+* Emoji-based result.
+* No-face handling.
+* Multiple-face handling.
+* Streamlit web interface.
+* Light/dark mode.
+
+### Face Handling
+
+* **0 faces:** Reject image.
+* **1 face:** Analyze the face.
+* **2+ faces:** Reject image.
+
+---
+
+## Final Verification
+
+The application was tested successfully with:
+
+* Single-face image.
+* No-face image.
+* Multiple-face image.
+* Image upload validation.
+* Emotion prediction.
+* Probability display.
+* Light/dark interface.
+
+---
+
+## Final Run Command
+
+```powershell
+conda activate emo_lens
+streamlit run frontend/app.py
 ```
 
-## 🔄 Planned Workflow
+---
 
-```text
-Input Image
-     ↓
-Face Detection
-     ↓
-Image Preprocessing
-     ↓
-CNN Emotion Classifier
-     ↓
-Emotion Prediction
-     ↓
-Web Interface
-```
+## Important Notes
 
-## 🛠️ Planned Technology Stack
+* The model's **81.17% test accuracy** is the overall evaluation result.
+* An individual prediction confidence, such as **99.998%**, is not the same as model accuracy.
+* Dataset files, secrets, virtual environments, and trained `.keras` files are excluded from GitHub through `.gitignore`.
 
-* Python
-* TensorFlow / Keras
-* OpenCV
-* NumPy
-* Pandas
-* Matplotlib
-* Git & GitHub
-* Web frontend
+---
 
-## 📊 Dataset
+## Final Checkpoint
 
-EmoLens uses the original FER2013 image data together with the official
-Microsoft FERPlus annotations.
-
-The FER2013 and FERPlus files contain 35,887 aligned samples. FERPlus
-annotator votes are used to assign labels rather than relying directly
-on the original FER2013 emotion labels.
-
-Only five emotion classes are used:
-
-- Angry
-- Happy
-- Sad
-- Surprise
-- Neutral
-
-A sample is retained only when one of these five emotions has a unique
-highest vote count greater than zero. Samples with tied highest votes
-are discarded to reduce label ambiguity.
-
-After filtering:
-
-- Original samples: 35,887
-- Retained samples: 34,039
-- Discarded ambiguous samples: 1,848
-
-The processed dataset is divided into training, validation, and test
-sets.
-
-Dataset files are excluded from GitHub through `.gitignore`.
-See `data/README.md` for dataset preparation and source details.
-
-## ⚠️ Limitations
-
-* The system is designed for five emotion classes only.
-* Facial emotion recognition is inherently imperfect because facial expressions do not always represent a person's actual emotional state.
-* Model performance depends on image quality, lighting, face visibility, dataset quality, and training.
-* FER-based datasets may have class imbalance and labeling uncertainty.
-* The initial version will work with uploaded images and will not use a live webcam.
-
-## 🚀 Future Scope
-
-Possible future improvements include:
-
-* Improved model architectures.
-* Better face detection and preprocessing.
-* Model performance optimization.
-* Support for additional emotion classes.
-* Real-time webcam-based recognition.
-* Deployment as a cloud/web application.
-
-## 📌 Project Status
-
-## 📌 Project Status
-
-**Current Phase:** Phase 1- dataset pipeline
-
-Next: Phase 2 — Baseline CNN development
-
-
-## 👩‍💻 Author
-
-**Shalini A P**
-
-B.Sc. (Hons) Data Science & Artificial Intelligence
-
+The project is ready for final Git commit, presentation, and demonstration.

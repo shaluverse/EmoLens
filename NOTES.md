@@ -1,139 +1,109 @@
 # EmoLens — Project Notes
 
-A short record of important decisions, progress, and results.
+Short record of important decisions, progress, and final results.
 
 ---
 
-## 📌 Current Status
+## Project Status
 
-**Current Phase:** Phase 3 — Face Detection & Prediction
-**Completed:** Phase -1, Phase 0, Phase 1, Phase 2
+**Status:** Completed
 
----
-
-## ✅ Project Decisions
-
-* **Project:** EmoLens
-* **Input:** JPG, JPEG, PNG images
-* **Classes:** Angry, Happy, Neutral, Sad, Surprise
-* **Model:** CNN
-* **Dataset:** FER2013 + official FERPlus annotations
-* **Webcam:** Not included
-* **GitHub:** Datasets, secrets, virtual environments, and `.keras` model files are not committed
+**Project:** EmoLens  
+**Input:** JPG, JPEG, PNG images  
+**Classes:** Angry, Happy, Neutral, Sad, Surprise  
+**Model:** Custom CNN  
+**Dataset:** FER2013 + official FERPlus annotations  
+**Webcam:** Not included
 
 ---
 
-## ✅ Phase -1 — Repository Setup
+## Phase 1 — Dataset Pipeline
 
 **Status:** Complete
 
-* GitHub repository created
-* Project structure created
-* `.gitignore` added
-* Initial commit and push completed
+- FER2013 and FERPlus data aligned.
+- 35,887 samples checked.
+- 34,039 samples retained.
+- 1,848 ambiguous samples discarded.
+- Five emotion classes prepared.
+- Train, validation, and test sets created.
+- Dataset integrity check passed with 0 corrupted images.
+- Images converted to 48 × 48 grayscale.
 
 ---
 
-## ✅ Phase 0 — Environment Setup
+## Phase 2 — CNN Training & Evaluation
 
 **Status:** Complete
 
-* Python environment created
-* Dependencies installed
-* Environment tested
-* Project structure finalized
+- 30 epochs completed.
+- Best validation accuracy: **82.00%**
+- Final validation accuracy: **81.82%**
+- Test samples: **3,414**
+- Test accuracy: **81.17%**
+- Macro F1: **0.7855**
+- Weighted F1: **0.8121**
+
+### Class F1 Scores
+
+| Emotion | F1 Score |
+|---|---:|
+| Angry | 71.99% |
+| Happy | 90.18% |
+| Neutral | 82.25% |
+| Sad | 62.19% |
+| Surprise | 86.14% |
+
+The trained model is stored locally as:
+
+`models/emolens_cnn.keras`
+
+The model file is excluded from GitHub.
 
 ---
 
-## ✅ Phase 1 — Dataset Pipeline
+## Phase 3 — Prediction & Application
 
-**Status:** Complete | **Date:** 2026-09-17
+**Status:** Complete
 
-* FER2013 + FERPlus data aligned
-* 35,887 samples checked
-* 34,039 images retained
-* 1,848 ambiguous samples removed
-* Five classes prepared
-* Train/validation/test sets created
-* Dataset check passed with 0 corrupted images
+Implemented:
 
----
+- OpenCV face detection.
+- Single-face validation.
+- Face cropping and preprocessing.
+- CNN inference.
+- Emotion and confidence prediction.
+- Emotion probability display.
+- Emoji-based result.
+- No-face handling.
+- Multiple-face handling.
+- Streamlit web interface.
+- Light/dark mode.
 
-## ✅ Phase 2 — CNN Training & Evaluation
+### Face Handling
 
-**Status:** Complete | **Date:** 2026-09-23
-
-### Training
-
-* 30 epochs completed
-* Best validation accuracy: **82.00%**
-* Final training accuracy: **81.31%**
-* Final validation accuracy: **81.82%**
-* Best model saved as `models/emolens_cnn.keras`
-
-### Test Results
-
-* Test samples: **3,414**
-* Test accuracy: **81.17%**
-* Test loss: **0.5121**
-* Weighted F1-score: **81.21%**
-
-### F1-score by Class
-
-* Angry: **71.99%**
-* Happy: **90.18%**
-* Neutral: **82.25%**
-* Sad: **62.19%**
-* Surprise: **86.14%**
-
-**Result:** CNN training and evaluation completed successfully.
+- **0 faces:** Reject image.
+- **1 face:** Analyze the face.
+- **2+ faces:** Reject image.
 
 ---
 
-## 🔄 Phase 3 — Face Detection & Prediction
+## Final Verification
 
-**Next tasks:**
+The application was tested successfully with:
 
-* Detect face using OpenCV
-* Crop and preprocess face
-* Load trained CNN
-* Predict one of five classes
-* Show prediction + probability + emoji
-* Handle images with no detectable face
-
----
-
-## ⏳ Phase 4 — Frontend
-
-* Image upload
-* Image preview
-* Detected-face preview
-* Prediction result
-* Professional UI
+- Single-face image.
+- No-face image.
+- Multiple-face image.
+- Image upload validation.
+- Emotion prediction.
+- Probability display.
+- Light/dark interface.
 
 ---
 
-## ⏳ Phase 5 — Integration & Testing
+## Final Run Command
 
-* Connect all components
-* Test different images
-* Handle errors and edge cases
-* Final testing
-
----
-
-## ⏳ Phase 6 — Finalization
-
-* Clean code
-* Update README
-* Check GitHub
-* Add screenshots
-* Prepare presentation
-
----
-
-## 📝 Important Note
-
-EmoLens predicts **facial-expression categories from images**. It does not determine a person's actual internal emotional state.
-
-**Rule:** Keep the project focused and prioritize working functionality over unnecessary features.
+```powershell
+conda activate emo_lens
+streamlit run frontend/app.py
